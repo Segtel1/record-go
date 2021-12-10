@@ -23,7 +23,7 @@ class AuthController extends Controller
             'name' => 'required|string',
             'phone_no' => 'required|string|unique:users',
             'password' => 'required|string|min:8',
-            'enterprise_type' => 'required|string',
+            'enterprise_typeId' => 'required|integer',
             'business_entity_type' => 'required|string', 
             'no_of_employees' => 'required|integer',
             'address' => 'required|string'
@@ -45,7 +45,7 @@ class AuthController extends Controller
         if($user) {
            $enterprise = Enterprise::create([
                'enterprise_name' => $request->name,
-                'enterprise_type' => $request->enterprise_type,
+                'enterprise_type_id' => $request->enterprise_typeId,
                 'business_entity_type' => $request->business_entity_type,
                 'no_of_employees' => $request->no_of_employees,
                 'address' => $request->address,
