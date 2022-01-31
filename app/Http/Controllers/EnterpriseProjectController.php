@@ -58,7 +58,7 @@ class EnterpriseProjectController extends Controller
                 ]);
             }
 
-            //get the all the assumed value of each asset and run a loop to sum them 
+            //get the assumed value of each asset and run a loop to sum them 
             $value = Asset::where('project_id',$project->id)->select('value')->get()->toArray();
 
             $toSum = [];

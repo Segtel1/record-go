@@ -1,0 +1,133 @@
+name: Authentication
+description: |-
+
+  User authentication
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      title: 'Create new user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: magnam
+        type: string
+        custom: []
+      phone_no:
+        name: phone_no
+        description: ''
+        required: true
+        example: fuga
+        type: string
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: false
+        example: repellendus
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: non
+        type: string
+        custom: []
+      enterprise_typeId:
+        name: enterprise_typeId
+        description: ''
+        required: true
+        example: 5
+        type: integer
+        custom: []
+      business_entity_type:
+        name: business_entity_type
+        description: ''
+        required: true
+        example: nulla
+        type: string
+        custom: []
+      no_of_employees:
+        name: no_of_employees
+        description: ''
+        required: true
+        example: 4
+        type: integer
+        custom: []
+      address:
+        name: address
+        description: ''
+        required: true
+        example: ea
+        type: string
+        custom: []
+      website_url:
+        name: website_url
+        description: ''
+        required: false
+        example: quod
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      title: Login
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: modi
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      title: Logout
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []

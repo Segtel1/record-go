@@ -7,21 +7,28 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Enterprise;
 use App\Models\User;
 use App\Models\Products;
+use App\Models\EnterpriseType;
+
+/**
+ * @group Enterprise Management
+ *
+ */
 
 class EnterpriseController extends Controller
 {
 
     public function __construct()
     {
-      $this->middleware('auth');
+      $this->middleware('auth')->except(['enterprise_types']);
     }
 
 
 
     /**
-     * Store a newly created resource in storage.
+     * Get all products
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @urlParam id integer required This ID is the id of the enterprise type that the products belong to.
+     * @authenticated
      */
     public function get_products($id)
     {
@@ -34,6 +41,7 @@ class EnterpriseController extends Controller
 
     /**
       * Get enterprise details 
+      * @authenticated
     **/
     public function show()
     {
@@ -49,11 +57,31 @@ class EnterpriseController extends Controller
         
     }
 
+    /**
+      * Get all enterprise types
+    **/
+
+    public function enterprise_types(){
+
+        $types = EnterpriseType::all();
+
+        return response()->json($types);
+    }
+
 
 
     /**
-     * Update enterprise function
-     */
+     * Update enterprise details
+    * @bodyParam enterpriseName string required 
+    * @bodyParam enterpriseTypeId int required 
+    * @bodyParam businessEntitytype string required
+    * @bodyParam noOfEmployees int required
+    * @bodyParam address string required
+    * @bodyParam websiteUrl string
+
+    * @urlParam id integer required The ID of the products.
+    * @authenticated
+    */
     public function update(Request $request, $id)
     {
         //
@@ -81,6 +109,10 @@ class EnterpriseController extends Controller
 
     /**
      * Add data entry officer
+        * @bodyParam name string required 
+        * @bodyParam phone_no string required 
+        * @bodyParam email string required
+        * @authenticated
      */
     public function add_officer(Request $request) {
 

@@ -17,9 +17,11 @@ class CreatePurchasesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('item_id')->index();
             $table->unsignedBigInteger('project_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
             $table->integer('amount');
             $table->enum('payment_source', ['bank', 'credit'])->default('bank');
             $table->date('purchase_date');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('enterprise_projects')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('purchase_items')->onDelete('cascade');
             $table->timestamps();

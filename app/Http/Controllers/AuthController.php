@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Enterprise;
 
+/**
+ * @group Authentication
+ *
+ * User authentication
+ */
 class AuthController extends Controller
 {
     //
@@ -16,6 +21,18 @@ class AuthController extends Controller
       $this->middleware('auth')->except(['register', 'login']);
     }
 
+    /**
+     * Create new user
+     * @bodyParam name string required 
+     * @bodyParam phone_no string required 
+     * @bodyParam email string 
+     * @bodyParam password string required
+     * @bodyParam enterprise_typeId int required
+     * @bodyParam business_entity_type string required
+     * @bodyParam no_of_employees int required
+     * @bodyParam address string required
+     * @bodyParam website_url string
+     */
     public function register(Request $request)
     {
 
@@ -65,10 +82,11 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    /*** 
-     * Login function 
-     * 
-     ***/
+    /**
+     * Login
+     * @bodyParam email string required 
+     * @bodyParam password string required 
+     */
 
     public function login(Request $request)
     {
@@ -110,6 +128,9 @@ class AuthController extends Controller
         ]);
     }
 
+   /**
+     * Logout
+     */
     public function logout()
     {
         auth()->logout();
